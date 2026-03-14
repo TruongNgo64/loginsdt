@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import {
-  View,
+  Alert,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  Alert
+  View
 } from "react-native";
 
-export default function App() {
+import { router } from "expo-router";
+
+export default function LoginScreen() {
 
   const [phone, setPhone] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +20,7 @@ export default function App() {
     let cleaned = text.replace(/\D/g, "");
 
     if (cleaned.length > 10) {
-      cleaned = cleaned.slice(0, 10);
+      cleaned = cleaned.slice(0,10);
     }
 
     let formatted = cleaned;
@@ -63,7 +65,7 @@ export default function App() {
       return;
     }
 
-    Alert.alert("Thành công", "Số điện thoại hợp lệ");
+  router.push("/(tabs)/home" as any);
   };
 
   return (
@@ -75,7 +77,7 @@ export default function App() {
 
       <TextInput
         style={styles.input}
-        placeholder="Nhập số điện thoại của bạn"
+        placeholder="Nhập số điện thoại"
         keyboardType="numeric"
         value={phone}
         onChangeText={handleChange}
